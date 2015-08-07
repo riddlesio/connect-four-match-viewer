@@ -3,7 +3,6 @@ html {
 }
 
 .Connect4Game {
-	background: #ccc;
 	
 }
 
@@ -79,3 +78,21 @@ html {
 	fill: #1b60c9;
 }
 
+.Connect4Game-cell {
+  transform: translateY(150px);
+  animation: popup 0s 6.5s ease infinite;
+}
+@keyframes popup {
+  0% {
+    transform: translateY(150px);
+  }
+  34% {
+    transform: translateY(20px);
+  }
+  37% {
+    transform: translateY(150px);
+  }
+  100% {
+    transform: translateY(150px);
+  }
+}

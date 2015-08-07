@@ -40,9 +40,6 @@
                 <rect className="Connect4Game-playerName-background" x="-2" y="-77" width={ fieldWidth + 4 } height="73" />
 
                 <g className="Connect4Game-grid">
-                    <g dangerouslySetInnerHTML={{
-                        __html: `<use x="-8" y="-8" xlink:href="#grid-background" />`
-                    }} />
                     { _.map(cells, Cell) }
                 </g>
                 <text

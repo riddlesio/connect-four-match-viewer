@@ -20,33 +20,11 @@
                         { currentState } = self.getState();
 
                     if (currentState !== self.states.length - 1) {
-                        self.setState({ currentState: currentState + 1 });
+                        self.setStates({ currentState: currentState + 1 });
                     }
                     else {
                         self.pause();
                     }
-                },
-
-                /**
-                 * Moves the game forward by one round
-                 */
-                roundForward: function () {
-
-                    var currentRound,
-                        nextState,
-                        self = this,
-                        states = self.states,
-                        { currentState } = self.getState();
-
-                    currentRound = states[currentState].round;
-                    nextState    = _.findIndex(states, { round: currentRound + 1 });
-
-                    if (-1 === nextState) {
-
-                        nextState = states.length - 1;
-                    }
-
-                    self.setState({ currentState: nextState });
                 },
 
                 /**
@@ -61,27 +39,6 @@
 
                         self.setState({ currentState: currentState - 1 });
                     }
-                },
-
-                /**
-                 * Moves the game backward by one round
-                 */
-                roundBackward: function () {
-
-                    var currentRound,
-                        nextState,
-                        self = this,
-                        states = self.states,
-                        { currentState } = self.getState();
-
-                    currentRound = states[currentState].round;
-                    nextState    = _.findIndex(states, { round: currentRound - 1 });
-
-                    if (-1 === nextState) {
-                        nextState = 0;
-                    }
-
-                    self.setState({ currentState: nextState });
                 },
 
                 /**

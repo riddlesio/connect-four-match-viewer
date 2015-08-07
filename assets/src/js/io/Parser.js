@@ -75,7 +75,7 @@
                                 x       = column * width+marginleft,
                                 y       = row * height+margintop;
 
-                            return { row, column, x, y, width, height, cellType };
+                            return { row, column, x, y, width, height, cellType, marginleft, margintop };
                         })
                         .value()
                 };

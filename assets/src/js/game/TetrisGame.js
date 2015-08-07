@@ -67,7 +67,6 @@
             self.settings = settings;
             self.states   = states;
             self.playernames = playernames;
-console.log(settings);
 
             self.setMoves(moves)
                 .setState({ currentState })
@@ -90,8 +89,96 @@ console.log(settings);
                 settings: self.settings,
             };
             React.render(GameView(props), self.getDOMNode());
+        },
+
+        /**
+         * Takes a field and returns the first taken row on given column
+         * @param {int} column
+         * @param {Array} field
+         */
+        getPieceRow: function(column, field) {
+            for (var y = 0; y < 6; y++) {
+                var value = field[y*7+column];
+                if (value > 0) {
+                    return y;
+                }
+            }
+        },
+
+        /**
+         * Renders the game
+         * @param {Object} state
+         * @param {Object} prevState
+         */
+        rendersubstate: function (state, prevState, substateindex) { // prevState is used for??
+
+            var props,
+                self = this,
+                { currentState } = state;
+
+            var substate = self.states[currentState];
+            var column = substate.column;
+            var round = substate.round;
+            var player = round%2+1;
+
+            var field = substate.field.split(",");
+            var newfield = "";
+            var row = self.getPieceRow(column, field);
+
+            for (var i =0; i < 7*6; i++) {
+                var value = field[i];
+                var x = i%7;
+                var y = Math.floor(i/7);
+
+                /* Blank out the piece that's actually already in place */
+                if (x == column && y == row && substateindex < row+1) {
+                    value = 0;
+                }
+
+                if (x == column && y == substateindex-2 && field[i] == 0) {
+                    value = player;
+                }
+                newfield += value + ",";
+            }
+            
+            var width = substate.cells[0].width;
+            var height = substate.cells[0].height;
+            var marginleft = substate.cells[0].marginleft;
+            var margintop = substate.cells[0].margintop;
+
+
+            substate = {
+                round: 0,
+                column,
+                winner: 0,
+                field: newfield,
+                fieldWidth: 7,
+                fieldHeight: 6,
+                cells: _
+                    .chain(newfield)
+                    .thru((string) => string.split(/,|;/))
+                    .map(function (cellType, index) {
+                        var row     = Math.floor(index / 7),
+                            column  = index % 7,
+                            x       = column * width+marginleft,
+                            y       = row * height+margintop;
+
+
+                        return { row, column, x, y, width, height, cellType };
+                    })
+                    .value()
+            };
+
+            props = {
+                state: substate,
+                settings: self.settings,
+            };
+            React.render(GameView(props), self.getDOMNode());
         }
     }, [StateMixin, GameLoopMixin]);
+
+
+    
 
     // Private functions
 
@@ -105,9 +192,7 @@ console.log(settings);
         PlaybackEvent.on(PlaybackEvent.PAUSE, context.pause, context);
         PlaybackEvent.on(PlaybackEvent.FORWARD, context.moveForward, context);
         PlaybackEvent.on(PlaybackEvent.GOTO, context.setMove, context);
-        PlaybackEvent.on(PlaybackEvent.FAST_FORWARD, context.roundForward, context);
         PlaybackEvent.on(PlaybackEvent.BACKWARD, context.moveBackward, context);
-        PlaybackEvent.on(PlaybackEvent.FAST_BACKWARD, context.roundBackward, context);
     }
 
     /**
@@ -120,9 +205,7 @@ console.log(settings);
         PlaybackEvent.off(PlaybackEvent.PAUSE, context.pause, context);
         PlaybackEvent.off(PlaybackEvent.FORWARD, context.moveForward, context);
         PlaybackEvent.off(PlaybackEvent.GOTO, context.setMove, context);
-        PlaybackEvent.off(PlaybackEvent.FAST_FORWARD, context.roundForward, context);
         PlaybackEvent.off(PlaybackEvent.BACKWARD, context.moveBackward, context);
-        PlaybackEvent.off(PlaybackEvent.FAST_BACKWARD, context.roundBackward, context);
     }
 
     module.exports = TetrisBattle;

@@ -16,11 +16,13 @@ _defaults = {
         "height": 6,
         "cell": {
             "width": 101,
-            "height": 101
+            "height": 101,
+            "marginleft": 246,
+            "margintop": 49
         },
         "margins": {
-            "margintop": 101,
-            "marginleft": 101
+            "marginleft": 246,
+            "margintop": 49
         }
     },
     "boxHeight": 630,
