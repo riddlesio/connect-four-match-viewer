@@ -13,9 +13,7 @@
         parsePlayerNames: function (settings) {
 
             var names = window.frameElement.getAttribute("data-players").split(",");
-
             settings.players.names = names;
-
             return settings;
         },
 
@@ -45,19 +43,21 @@
 
         parseStates: function (data, settings) {
 
-            var fieldSettings       = settings.field,
-                fieldWidth          = fieldSettings.width,
-                fieldHeight         = fieldSettings.height,
-                { width, height }   = fieldSettings.cell;
+            var field                       = settings.field,
+                fieldWidth                  = field.width,
+                fieldHeight                 = field.height,
+                { width, height }           = field.cell,
+                { marginleft, margintop }   = field.margins;
             var cells = 0;
-            
+            console.log(field);
             return _.map(data.states, function (state) {
 
-                var { players, round, column, winner, field } = state;
+                var { round, column, winner, field } = state;
 
                 if(winner) {
                     winner = settings.players.names[parseInt(winner.replace("player", "")) - 1];
                 }
+                console.log(field);
 
                 return {
                     round,
@@ -72,8 +72,8 @@
                         .map(function (cellType, index) {
                             var row     = Math.floor(index / fieldWidth),
                                 column  = index % fieldWidth,
-                                x       = column * width,
-                                y       = row * height;
+                                x       = column * width+marginleft,
+                                y       = row * height+margintop;
 
                             return { row, column, x, y, width, height, cellType };
                         })

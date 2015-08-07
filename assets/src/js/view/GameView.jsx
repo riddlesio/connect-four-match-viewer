@@ -25,11 +25,11 @@
          */
 
         return (
-            <svg className="TetrisGame" viewBox="0 0 700 600" preserveAspectRatio="xMidYMid meet">
+            <svg className="Connect4Game" viewBox="0 0 1200 705" preserveAspectRatio="xMidYMid meet">
 
                 
-                <text x="50%" y="70" className="TetrisGame-currentRound">{ 'Round ' + round }</text>
                 { FieldView(state) }
+                <text x="50%" y="70" className="Connect4Game-currentRound">{ 'Round ' + round }</text>
                 <Overlay winner={ winner } />
             </svg>
         );

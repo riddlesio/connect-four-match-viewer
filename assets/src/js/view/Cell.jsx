@@ -3,8 +3,7 @@
     const
         React      = require('react'),
         createView = require('omniscient'),
-        classNames = require('classnames'),
-        CellType   = require('../enum/CellType');
+        classNames = require('classnames');
 
     var Cell;
 

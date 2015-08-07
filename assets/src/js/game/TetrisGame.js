@@ -50,6 +50,7 @@
             var currentState,
                 moves,
                 settings,
+                playernames,
                 states,
                 // Use self where this is used more than once
                 // "self" can be shortened by the minifier unlike "this"
@@ -59,12 +60,14 @@
 
             currentState  = 0;
             settings      = _.merge(this.getDefaults(), data.settings);
-            settings = Parser.parsePlayerNames(settings);
+            playernames = Parser.parsePlayerNames(settings);
             states   = Parser.parseStates(data, settings);
             moves    = Parser.parseMoveSet(states);
 
             self.settings = settings;
             self.states   = states;
+            self.playernames = playernames;
+console.log(settings);
 
             self.setMoves(moves)
                 .setState({ currentState })
