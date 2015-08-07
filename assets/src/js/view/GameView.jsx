@@ -36,9 +36,6 @@
                     <symbol id="background-playername-right" dangerouslySetInnerHTML={{
                         __html: `<image width="328" height="71" xlink:href="./img/background-playername-blue.svg" />`
                     }} />
-                    <symbol id="grid-background" dangerouslySetInnerHTML={{
-                        __html: `<image width="${ fieldWidth + 18 }" height="${ fieldHeight + 18 }" xlink:href="./img/field-background.svg" />`
-                    }} />
                     <symbol id="block-0" dangerouslySetInnerHTML={{
                         __html: `<image width="${ cell.width }" height="${ cell.height }" xlink:href="./img/block-0.svg" />`
                     }} />
@@ -47,6 +44,9 @@
                     }} />
                     <symbol id="block-2" dangerouslySetInnerHTML={{
                         __html: `<image width="${ cell.width }" height="${ cell.height }" xlink:href="./img/block-2.svg" />`
+                    }} />
+                    <symbol id="connect4-background" dangerouslySetInnerHTML={{
+                        __html: `<image width="${ 1100 }" height="${ 500 }" xlink:href="./img/gamefield.svg" />`
                     }} />
                 </defs>
                 { FieldView(state) }
