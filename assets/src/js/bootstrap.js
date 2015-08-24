@@ -25,8 +25,8 @@
                 aspectRatio: 1000 / 558,
                 // Time between each step when playing
                 playbackTimeout: {
-                    min: 30,
-                    max: 850
+                    min: 300,
+                    max: 1600
                 },
             }
         })

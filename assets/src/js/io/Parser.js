@@ -49,15 +49,13 @@
                 { width, height }           = field.cell,
                 { marginleft, margintop }   = field.margins;
             var cells = 0;
-            console.log(field);
             return _.map(data.states, function (state) {
 
-                var { round, column, winner, field } = state;
+                var { round, column, winner, field, illegalMove, player } = state;
 
                 if(winner) {
                     winner = settings.players.names[parseInt(winner.replace("player", "")) - 1];
                 }
-                console.log(field);
 
                 return {
                     round,
@@ -66,6 +64,8 @@
                     field,
                     fieldWidth,
                     fieldHeight,
+                    illegalMove,
+                    player,
                     cells: _
                         .chain(field)
                         .thru((string) => string.split(/,|;/))

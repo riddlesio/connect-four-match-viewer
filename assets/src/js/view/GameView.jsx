@@ -11,30 +11,17 @@
 
     GameView = createView('GameView', function (props) {
         var { state, settings } = props,
-            { round, column, winner, field, fieldWidth, fieldHeight, cells } = state,
-            { player, field } = settings,
+            { round, column, winner, field, fieldWidth, fieldHeight, cells, illegalMove } = state,
+            { players, field } = settings,
             cell = field.cell;
-
-            console.log(state);
-
-        /**
-         * Data should have the following structure:
-         * {
-         *     round: Integer,
-         *     
-         *     ],
-         *     winner: [unset | string]
-         * }
-         */
-
         return (
             <svg className="Connect4Game" viewBox="0 0 1200 705" preserveAspectRatio="xMidYMid meet">
                 <defs>
-                    <symbol id="background-playername-left" dangerouslySetInnerHTML={{
+                    <symbol id="background-playername-red" dangerouslySetInnerHTML={{
                         __html: `<image width="328" height="71" xlink:href="./img/background-playername-red.svg" />`
                     }} />
-                    <symbol id="background-playername-right" dangerouslySetInnerHTML={{
-                        __html: `<image width="328" height="71" xlink:href="./img/background-playername-blue.svg" />`
+                    <symbol id="background-playername-yellow" dangerouslySetInnerHTML={{
+                        __html: `<image width="328" height="71" xlink:href="./img/background-playername-yellow.svg" />`
                     }} />
                     <symbol id="block-0" dangerouslySetInnerHTML={{
                         __html: `<image width="${ cell.width }" height="${ cell.height }" xlink:href="./img/block-0.svg" />`
@@ -50,8 +37,20 @@
                     }} />
                 </defs>
                 { FieldView(state) }
-                <text x="50%" y="70" className="Connect4Game-currentRound">{ 'Round ' + round }</text>
+                <g dangerouslySetInnerHTML={{
+                    __html: `<use x="70" y="53" xlink:href="#background-playername-red" />`
+                }} />
+                <g dangerouslySetInnerHTML={{
+                    __html: `<use x="800" y="53" xlink:href="#background-playername-yellow" />`
+                }} />
+                <text x="210" y="94" className="Connect4Game-playerName">{ players.names[0] }</text>
+                <text x="983" y="94" className="Connect4Game-playerName">{ players.names[1] }</text>
+
+                <text x="50%" y="70" className="Connect4Game-currentRound">{ 'Move ' + round }</text>
+                <text x="50%" y="110" className="Connect4Game-illegalMove">{ illegalMove }</text>
+
                 <Overlay winner={ winner } />
+
             </svg>
         );
     });

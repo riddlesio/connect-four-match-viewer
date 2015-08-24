@@ -13,7 +13,7 @@
 
             mixin = {
                 /**
-                 * Loops through array of diff objects
+                 * Loops through array of diff objects, creating substates for each
                  * @param {Object} diff
                  * @return {AbstractUIComponent}
                  */
@@ -23,14 +23,11 @@
                         nextState,
                         shouldComponentUpdate = self.shouldComponentUpdate;
 
-
                     currentState = state;
                     nextState    = _.merge({}, state, diff);
                     
                     substateindex = 0;
                     var intervalId = setInterval(function(){self.renderSubState(state, nextState, intervalId);}, 40);
-
-
 
                     state = nextState;
                     return self;
@@ -69,7 +66,6 @@
                  * @return {Object}
                  */
                 getState: function () {
-
                     return state;
                 },
 

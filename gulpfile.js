@@ -52,8 +52,7 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('./assets/dev/css'))
         .pipe(cssmin({ keepSpecialComments:0 }))
         .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('./assets/prod/css/'))
-        .pipe(notify({ message: 'CRM Sass compiled' }));
+        .pipe(gulp.dest('./assets/prod/css/'));
 });
 
 gulp.task('img', function () {
@@ -66,8 +65,7 @@ gulp.task('js:minify', function () {
     return gulp.src('./assets/dev/js/*')
         .pipe(uglify())
         .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('./assets/prod/js/'))
-        .pipe(notify({ message: 'Js Minified' }));
+        .pipe(gulp.dest('./assets/prod/js/'));
 });
 
 gulp.task('js:compile', function () {

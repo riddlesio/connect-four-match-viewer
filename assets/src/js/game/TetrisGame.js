@@ -106,11 +106,12 @@
         },
 
         /**
-         * Renders the game
+         * Renders a busbstate
          * @param {Object} state
          * @param {Object} prevState
+         * @param {int} substateindex
          */
-        rendersubstate: function (state, prevState, substateindex) { // prevState is used for??
+        rendersubstate: function (state, prevState, substateindex) {
 
             var props,
                 self = this,
@@ -119,12 +120,16 @@
             var substate = self.states[currentState];
             var column = substate.column;
             var round = substate.round;
-            var player = round%2+1;
+            var winner = substate.winner;
+            var player = substate.player;
+
+            var illegalMove = substate.illegalMove;
 
             var field = substate.field.split(",");
             var newfield = "";
             var row = self.getPieceRow(column, field);
 
+            /* Create a new field which represents the substate */
             for (var i =0; i < 7*6; i++) {
                 var value = field[i];
                 var x = i%7;
@@ -146,11 +151,12 @@
             var marginleft = substate.cells[0].marginleft;
             var margintop = substate.cells[0].margintop;
 
-
             substate = {
-                round: 0,
+                round,
                 column,
-                winner: 0,
+                winner,
+                illegalMove,
+                player,
                 field: newfield,
                 fieldWidth: 7,
                 fieldHeight: 6,
@@ -162,8 +168,6 @@
                             column  = index % 7,
                             x       = column * width+marginleft,
                             y       = row * height+margintop;
-
-
                         return { row, column, x, y, width, height, cellType };
                     })
                     .value()
