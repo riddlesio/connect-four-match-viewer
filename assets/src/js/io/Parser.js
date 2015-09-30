@@ -13,6 +13,7 @@
         parsePlayerNames: function (settings) {
 
             var names = window.frameElement.getAttribute("data-players").split(",");
+            console.log(names);
             settings.players.names = names;
             return settings;
         },

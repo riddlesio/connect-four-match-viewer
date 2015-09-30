@@ -2,7 +2,7 @@
 
     const
         AIGames      = require('aigames'),
-        TetrisGame   = require('./game/TetrisGame');
+        ConnectFourGame   = require('./game/ConnectFourGame');
 
     var game, 
         displayChrome = true;
@@ -13,9 +13,9 @@
 
     // Wraps the game for use on TheAIGames website
     // Takes care of setting up and destroying the competition namespace
-    // AIGames.util.legacyWrapper(TetrisGame,
-    game = new TetrisGame({
-            name: 'tetris-battle',
+    // AIGames.util.legacyWrapper(ConnectFourGame,
+    game = new ConnectFourGame({
+            name: 'connectfour-battle',
             player: {
                 // Determines whether they player's chrome should be displayed
                 chrome: displayChrome,
