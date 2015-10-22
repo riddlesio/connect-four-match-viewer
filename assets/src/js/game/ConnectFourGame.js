@@ -124,8 +124,7 @@
             var player = substate.player;
 
             var illegalMove = substate.illegalMove;
-
-            var field = substate.field.split(",");
+            var field = substate.field.split(/,|;/);
             var newfield = "";
             var row = self.getPieceRow(column, field);
 
@@ -150,7 +149,6 @@
             var height = substate.cells[0].height;
             var marginleft = substate.cells[0].marginleft;
             var margintop = substate.cells[0].margintop;
-
             substate = {
                 round,
                 column,
