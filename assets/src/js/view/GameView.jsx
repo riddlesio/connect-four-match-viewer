@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            (function () {
+(function (undefined) {
 
     const
         _           = require('lodash'),
@@ -37,16 +37,22 @@
                     }} />
                 </defs>
                 { FieldView(state) }
-                <g dangerouslySetInnerHTML={{
-                    __html: `<use x="70" y="53" xlink:href="#background-playername-red" />`
-                }} />
-                <g dangerouslySetInnerHTML={{
-                    __html: `<use x="800" y="53" xlink:href="#background-playername-yellow" />`
-                }} />
-                <text x="210" y="94" className="Connect4Game-playerName">{ players.names[0] }</text>
-                <text x="983" y="94" className="Connect4Game-playerName">{ players.names[1] }</text>
+                <g className="Connect4Game-playerView-left">
+                    <g dangerouslySetInnerHTML={{
+                        __html: `<use x="40" y="20" xlink:href="#background-playername-red" />`
+                    }} />
+                    <text x={ 110 } y="61" className="Connect4Game-playerName">{ players.names[0] }</text>
+                </g>
+                <g className="Connect4Game-playerView-right">
+                    <g dangerouslySetInnerHTML={{
+                        __html: `<use x="${ 1200 - 328 - 40 }" y="20" xlink:href="#background-playername-yellow" />`
+                    }} />
+                
+                    <text x={ 1200 - 110 } y="61" className="Connect4Game-playerName">{ players.names[1] }</text>
+                </g>
+                
 
-                <text x="50%" y="70" className="Connect4Game-currentRound">{ 'Move ' + round }</text>
+                <text x="50%" y="70" className="Connect4Game-currentRound">{ 'Round ' + round }</text>
                 <text x="50%" y="110" className="Connect4Game-illegalMove">{ illegalMove }</text>
 
                 <Overlay winner={ winner } />
