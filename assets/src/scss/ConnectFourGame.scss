@@ -30,10 +30,18 @@ html {
 }
 
 .Connect4Game-illegalMove {
-	text-anchor: middle;
+	text-anchor: left;
 	font-family: Exo,sans-serif;
-	font-size: 2.5rem;
+	font-size: 2rem;
 	fill: #ffffff;
+}
+
+.Connect4Game-illegalMove.player2 {
+	text-anchor: end;
+}
+
+.Connect4Game-illegalMove.illegal {
+    fill: #fb4d00;
 }
 
 .Connect4Game-playerInfo {

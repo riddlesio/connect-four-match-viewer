@@ -53,8 +53,11 @@
 
                 var { round, column, winner, field, illegalMove, player } = state;
 
-                if(winner) {
-                    winner = settings.players.names[parseInt(winner.replace("player", "")) - 1];
+                if (winner) {
+                    if (winner == "none") { /* It's a draw */
+                    } else {
+                        winner = settings.players.names[parseInt(winner.replace("player", "")) - 1];
+                    }
                 }
 
                 return {
