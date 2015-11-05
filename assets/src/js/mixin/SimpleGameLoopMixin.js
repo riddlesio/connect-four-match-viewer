@@ -42,6 +42,21 @@
                 },
 
                 /**
+                 * To the final step.
+                 */
+                fastForward: function () {
+                    var statenr = this.states.length - 1;
+                    return this.setState({currentState: statenr });
+                },
+
+                /**
+                 * To the first step.
+                 */
+                fastBackward: function () {
+                    return this.setState({ currentState: 0});
+                },
+
+                /**
                  * Starts the game loop
                  */
                 play: function () {
