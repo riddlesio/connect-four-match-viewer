@@ -128,6 +128,12 @@
             var newfield = "";
             var row = self.getPieceRow(column, field);
 
+            /* If a move is illegal, just render a single state without substates */
+            if (illegalMove != "") {
+                self.render(state, prevState);
+                return;
+            }
+
             /* Create a new field which represents the substate */
             for (var i =0; i < 7*6; i++) {
                 var value = field[i];
