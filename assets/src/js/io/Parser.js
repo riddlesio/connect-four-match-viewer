@@ -56,8 +56,7 @@
             return _.map(data.states, function (state) {
 
 
-                var { round, column, winner, field, macroboard, illegalMove, player } = state;
-console.log(field);
+                var { round, column, winner, field, macroboard, illegalMove, player, player1fields, player2fields } = state;
                 if(winner) {
                     winner = settings.players.names[parseInt(winner.replace("player", "")) - 1];
                 }
@@ -69,6 +68,8 @@ console.log(field);
                     fieldWidth,
                     fieldHeight,
                     illegalMove,
+                    player1fields,
+                    player2fields,
                     player,
                     cells: _
                         .chain(field)

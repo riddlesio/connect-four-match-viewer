@@ -11,7 +11,7 @@
 
     GameView = createView('GameView', function (props) {
         var { state, settings } = props,
-            { round, column, winner, field, fieldWidth, fieldHeight, cells, illegalMove } = state,
+            { round, column, winner, field, fieldWidth, fieldHeight, player1fields, player2fields, cells, illegalMove } = state,
             { players, field } = settings,
             cell = field.cell;
         return (
@@ -57,6 +57,10 @@
                 }} />
                 <text x="210" y="94" className="Connect4Game-playerName">{ players.names[0] }</text>
                 <text x="983" y="94" className="Connect4Game-playerName">{ players.names[1] }</text>
+
+                <text x="210" y="124" className="Connect4Game-playerName">{ player1fields }</text>
+                <text x="983" y="124" className="Connect4Game-playerName">{ player2fields }</text>
+
 
                 <text x="50%" y="70" className="Connect4Game-currentRound">{ 'Move ' + round }</text>
                 <text x="50%" y="110" className="Connect4Game-illegalMove">{ illegalMove }</text>
