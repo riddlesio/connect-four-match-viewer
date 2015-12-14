@@ -78,7 +78,7 @@
                             var row     = Math.floor(index / fieldWidth),
                                 column  = index % fieldWidth,
                                 x       = column * width+marginleft,
-                                y       = row * height+margintop;
+                                y       = row * height+margintop+2;
 
                             return { row, column, x, y, width, height, cellType, marginleft, margintop };
                         })
@@ -93,8 +93,9 @@
                             y       = row * (height*3)+margintop;
                         var mbwidth = width *3;
                         var mbheight = height * 3;
+                        var mbplayer = player;
 
-                        return { row, column, x, y, mbwidth, mbheight, cellType, marginleft, margintop };
+                        return { row, column, x, y, mbwidth, mbheight, cellType, marginleft, margintop, mbplayer };
                     })
                     .value()
                 };

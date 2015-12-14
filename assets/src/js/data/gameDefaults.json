@@ -15,14 +15,12 @@ _defaults = {
         "width": 7,
         "height": 6,
         "cell": {
-            "width": 55,
-            "height": 55,
-            "marginleft": 350,
-            "margintop": 140
+            "width": 54,
+            "height": 54
         },
         "margins": {
             "marginleft": 350,
-            "margintop": 140
+            "margintop": 144
         }
     },
     "boxHeight": 630,

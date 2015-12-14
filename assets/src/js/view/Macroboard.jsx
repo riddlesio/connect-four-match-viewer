@@ -21,18 +21,25 @@
          */
 
         var className,
-            { x, y, mbwidth, mbheight, cellType } = data;
+            { x, y, mbwidth, mbheight, cellType, mbplayer } = data;
 
-        //return React.DOM.rect({ x, y, width, height, className });
+            className = 0;
+            if (cellType == -1) {
+                className = mbplayer;
+            }
+        /*
+        var player1class="", player2class="";
+        if ( data.player == 1) {
+            player1class = " active ";
+        } else {
+            player2class = " active ";
+        }
+        */
+        var id="x" + x + "y" + y;
 
-         if (cellType === "0" || cellType === "3") {
-             //return React.DOM.rect({ x, y, width, height, className });
-         }
-         var id="x" + x + "y" + y;
-
-         return (
+        return (
              <g id={ id } dangerouslySetInnerHTML={{
-                 __html: `<use x="${ x }" y="${ y }" width="${ mbwidth }" height="${ mbheight }" xlink:href="#macroboard-${ cellType }" />`
+                 __html: `<use x="${ x }" y="${ y }" width="${ mbwidth }" height="${ mbheight }" xlink:href="#macroboard--${ className }" />`
              }} />
          );
     });

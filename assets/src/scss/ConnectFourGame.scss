@@ -26,18 +26,18 @@ html {
 	text-anchor: middle;
 	font-family: Montserrat;
 	font-size: 3.5rem;
-	fill: #ffffff;
+	fill: #6ca3ff;
 }
 
 .Connect4Game-illegalMove {
 	text-anchor: middle;
 	font-family: Montserrat;
 	font-size: 2.5rem;
-	fill: #ffffff;
+	fill: #6ca3ff;
 }
 
 .Connect4Game-playerInfo {
-	fill: #ffffff;
+	fill: #6ca3ff;
 	font-family: Montserrat;
 	font-size: 2.5rem;
 }
@@ -45,8 +45,25 @@ html {
 .Connect4Game-playerName {
 	font-family: Montserrat;
 	text-anchor: middle;
-	fill: white;
 	font-size: 2.0rem;
+}
+
+.Connect4Game-playerName.active {
+	font-weight: bold;
+}
+
+.Connect4Game-playerFields {
+	font-family: Montserrat;
+	text-anchor: middle;
+	font-size: 4.0rem;
+}
+
+.Connect4Game-player1Name, .Connect4Game-player1Fields {
+	fill: #fe6f69;
+}
+
+.Connect4Game-player2Name, .Connect4Game-player2Fields {
+	fill: #69a2fc;
 }
 
 .Connect4Game-playerInfo.Connect4Game-playerMove {

@@ -14,6 +14,13 @@
             { round, column, winner, field, fieldWidth, fieldHeight, player1fields, player2fields, cells, illegalMove } = state,
             { players, field } = settings,
             cell = field.cell;
+        var player1class="", player2class="";
+        if ( state.player == 1) {
+            player1class = " active ";
+        } else {
+            player2class = " active ";
+        }
+
         return (
             <svg className="Connect4Game" viewBox="0 0 1200 705" preserveAspectRatio="xMidYMid meet">
                 <defs>
@@ -24,9 +31,12 @@
                         __html: `<image width="328" height="71" xlink:href="./img/background-playername-yellow.svg" />`
                     }} />
                     <symbol id="macroboard--1" dangerouslySetInnerHTML={{
-                        __html: `<image width="165" height="165" xlink:href="./img/fieldactive.svg" />`
+                        __html: `<image width="165" height="165" xlink:href="./img/fieldactiveplayer1.svg" />`
                     }} />
-                    <symbol id="macroboard-0" dangerouslySetInnerHTML={{
+                    <symbol id="macroboard--2" dangerouslySetInnerHTML={{
+                        __html: `<image width="165" height="165" xlink:href="./img/fieldactiveplayer2.svg" />`
+                    }} />
+                    <symbol id="macroboard--0" dangerouslySetInnerHTML={{
                         __html: `<image width="165" height="165" xlink:href="./img/field.svg" />`
                     }} />
                     <symbol id="macroboard-1" dangerouslySetInnerHTML={{
@@ -55,11 +65,18 @@
                 <g dangerouslySetInnerHTML={{
                     __html: `<use x="800" y="53" xlink:href="#background-playername-yellow" />`
                 }} />
-                <text x="210" y="94" className="Connect4Game-playerName">{ players.names[0] }</text>
-                <text x="983" y="94" className="Connect4Game-playerName">{ players.names[1] }</text>
 
-                <text x="210" y="124" className="Connect4Game-playerName">{ player1fields }</text>
-                <text x="983" y="124" className="Connect4Game-playerName">{ player2fields }</text>
+                <text
+                    x={ "210" }
+                    y={ "150" }
+                    className={"Connect4Game-playerName Connect4Game-player1Name " + player1class }>{ players.names[0] }</text>
+                <text
+                    x={ "983" }
+                    y={ "150" }
+                    className={"Connect4Game-playerName Connect4Game-player2Name " + player2class }>{ players.names[1] }</text>
+
+                <text x="300" y="100" className="Connect4Game-playerFields Connect4Game-player1Fields">{ player1fields }</text>
+                <text x="1034" y="100" className="Connect4Game-playerFields Connect4Game-player2Fields">{ player2fields }</text>
 
 
                 <text x="50%" y="70" className="Connect4Game-currentRound">{ 'Move ' + round }</text>
