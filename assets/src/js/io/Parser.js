@@ -13,6 +13,7 @@
         parsePlayerNames: function (settings) {
 
             var names = window.frameElement.getAttribute("data-players").split(",");
+            console.log(names);
             settings.players.names = names;
             return settings;
         },
@@ -21,6 +22,7 @@
 
             var currentRound;
 
+            
             return _
                 .chain(states)
                 .map(function (state, index) {
@@ -33,6 +35,7 @@
                     }
 
                     currentRound = round;
+                    console.log( "currentRound " + currentRound); 
                     label = `Round ${round}`;
 
                     return { label, value: index };
@@ -44,6 +47,7 @@
         parseStates: function (data, settings) {
 
             var field                       = settings.field,
+                macroboard                  = settings.macroboard,
                 fieldWidth                  = field.width,
                 fieldHeight                 = field.height,
                 { width, height }           = field.cell,
@@ -51,15 +55,12 @@
             var cells = 0;
             return _.map(data.states, function (state) {
 
-                var { round, column, winner, field, illegalMove, player } = state;
 
-                if (winner) {
-                    if (winner == "none") { /* It's a draw */
-                    } else {
-                        winner = settings.players.names[parseInt(winner.replace("player", "")) - 1];
-                    }
+                var { round, column, winner, field, macroboard, illegalMove, player } = state;
+console.log(field);
+                if(winner) {
+                    winner = settings.players.names[parseInt(winner.replace("player", "")) - 1];
                 }
-
                 return {
                     round,
                     column,
@@ -80,7 +81,21 @@
 
                             return { row, column, x, y, width, height, cellType, marginleft, margintop };
                         })
-                        .value()
+                        .value(),
+                    macroboard: _
+                    .chain(macroboard)
+                    .thru((string) => string.split(/,|;/))
+                    .map(function (cellType, index) {
+                        var row     = Math.floor(index / 3),
+                            column  = index % 3,
+                            x       = column * (width*3)+marginleft,
+                            y       = row * (height*3)+margintop;
+                        var mbwidth = width *3;
+                        var mbheight = height * 3;
+
+                        return { row, column, x, y, mbwidth, mbheight, cellType, marginleft, margintop };
+                    })
+                    .value()
                 };
             });
         }

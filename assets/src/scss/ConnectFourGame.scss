@@ -17,53 +17,41 @@ html {
 
 .Connect4Game-overlayMessage {
 	text-anchor: middle;
-	font-family: Exo,sans-serif;
+	font-family: Montserrat;
 	font-size: 3.5rem;
 	fill: #ffffff;
 }
 
 .Connect4Game-currentRound {
 	text-anchor: middle;
-	font-family: Exo,sans-serif;
+	font-family: Montserrat;
 	font-size: 3.5rem;
 	fill: #ffffff;
 }
 
 .Connect4Game-illegalMove {
-	text-anchor: left;
-	font-family: Exo,sans-serif;
-	font-size: 2rem;
+	text-anchor: middle;
+	font-family: Montserrat;
+	font-size: 2.5rem;
 	fill: #ffffff;
-}
-
-.Connect4Game-illegalMove.player2 {
-	text-anchor: end;
-}
-
-.Connect4Game-illegalMove.illegal {
-    fill: #fb4d00;
 }
 
 .Connect4Game-playerInfo {
 	fill: #ffffff;
-	font-family: Exo,sans-serif;
+	font-family: Montserrat;
 	font-size: 2.5rem;
 }
 
-.Connect4Game-playerView-left .Connect4Game-playerName,
-.Connect4Game-playerView-left .Connect4Game-playerMove {
-	text-anchor: start;
-}
-.Connect4Game-playerView-right .Connect4Game-playerName,
-.Connect4Game-playerView-right .Connect4Game-playerMove {
-	text-anchor: end;
-}
-
-.Connect4Game-playerName,
-.Connect4Game-playerMove {
-	font-family: Exo,sans-serif;
+.Connect4Game-playerName {
+	font-family: Montserrat;
+	text-anchor: middle;
 	fill: white;
 	font-size: 2.0rem;
+}
+
+.Connect4Game-playerInfo.Connect4Game-playerMove {
+	text-anchor: middle;
+	font-size: 2rem;
 }
 
 .Connect4Game-playerMove-illegal {

@@ -13,7 +13,7 @@
 
             mixin = {
                 /**
-                 * Loops through array of diff objects, creating substates for each
+                 * Loops through array of diff objects
                  * @param {Object} diff
                  * @return {AbstractUIComponent}
                  */
@@ -25,9 +25,7 @@
 
                     currentState = state;
                     nextState    = _.merge({}, state, diff);
-                    
-                    substateindex = 0;
-                    var intervalId = setInterval(function(){self.renderSubState(state, nextState, intervalId);}, 40);
+                    self.render(state, nextState);
 
                     state = nextState;
                     return self;
@@ -53,6 +51,7 @@
                     }
 
                     state = nextState;
+                    console.log(state.round);
 
                     window.requestAnimationFrame(function () {
                         self.render(nextState, currentState);
@@ -67,30 +66,6 @@
                  */
                 getState: function () {
                     return state;
-                },
-
-                /**
-                 * Render a substate
-                 * @return {Object}
-                 */
-                renderSubState: function (state, nextState, intervalId) {
-                    var self = this,
-                    shouldComponentUpdate = self.shouldComponentUpdate;
-
-                    if (state && shouldComponentUpdate && !shouldComponentUpdate(state, nextState)) {
-                        return self;
-                    }
-
-                    window.requestAnimationFrame(function () {
-                        self.rendersubstate(state, nextState, substateindex);
-                    });
-
-
-                    if (substateindex > 5) {
-                        clearInterval(intervalId);
-                    }
-                    substateindex++;
-                    return self;
                 }
             };
 

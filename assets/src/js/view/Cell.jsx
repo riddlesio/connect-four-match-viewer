@@ -25,10 +25,16 @@
 
         className = createClassName(cellType);
 
+        //return React.DOM.rect({ x, y, width, height, className });
+
+         if (cellType === "0" || cellType === "3") {
+             //return React.DOM.rect({ x, y, width, height, className });
+         }
+         //y = Math.floor(Math.random()*6)*height;
          var id="x" + x + "y" + y;
 
          return (
-             <g id={ id } key={ id } dangerouslySetInnerHTML={{
+             <g id={ id } dangerouslySetInnerHTML={{
                  __html: `<use x="${ x }" y="${ y }" width="${ width }" height="${ height }" xlink:href="#block-${ cellType }" />`
              }} />
          );
