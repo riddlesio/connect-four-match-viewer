@@ -12,17 +12,17 @@
 
         _defaults           = require('../data/gameDefaults.json');
 
-    var TicTacToe;
+    var TetrisBattle;
 
     /**
-     * TicTacToe class
+     * TetrisBattle class
      * @constructor
      */
-    TicTacToe = AIGames.createGame({
+    TetrisBattle = AIGames.createGame({
 
         /**
-         * TicTacToe construct function
-         * Automatically executed when instantiating the TicTacToe class
+         * TetrisBattle construct function
+         * Automatically executed when instantiating the TetrisBattle class
          * @param  {Object} options
          */
         construct: function (options) {
@@ -56,6 +56,8 @@
                 // "self" can be shortened by the minifier unlike "this"
                 self = this;
 
+            //data =
+
             currentState  = 0;
             settings      = _.merge(this.getDefaults(), data.settings);
             playernames = Parser.parsePlayerNames(settings);
@@ -84,6 +86,99 @@
 
             props = {
                 state: self.states[currentState],
+                settings: self.settings,
+            };
+            React.render(GameView(props), self.getDOMNode());
+        },
+
+        /**
+         * Takes a field and returns the first taken row on given column
+         * @param {int} column
+         * @param {Array} field
+         */
+        getPieceRow: function(column, field) {
+            for (var y = 0; y < 6; y++) {
+                var value = field[y*7+column];
+                if (value > 0) {
+                    return y;
+                }
+            }
+        },
+
+        /**
+         * Renders a busbstate
+         * @param {Object} state
+         * @param {Object} prevState
+         * @param {int} substateindex
+         */
+        rendersubstate: function (state, prevState, substateindex) {
+
+            var props,
+                self = this,
+                { currentState } = state;
+
+            var substate = self.states[currentState];
+            var column = substate.column;
+            var round = substate.round;
+            var winner = substate.winner;
+            var player = substate.player;
+
+            var illegalMove = substate.illegalMove;
+            var field = substate.field.split(/,|;/);
+            var newfield = "";
+            var row = self.getPieceRow(column, field);
+
+            /* If a move is illegal, just render a single state without substates */
+            if (illegalMove != "") {
+                self.render(state, prevState);
+                return;
+            }
+
+            /* Create a new field which represents the substate */
+            for (var i =0; i < 7*6; i++) {
+                var value = field[i];
+                var x = i%7;
+                var y = Math.floor(i/7);
+
+                /* Blank out the piece that's actually already in place */
+                if (x == column && y == row && substateindex < row+1) {
+                    value = 0;
+                }
+
+                if (x == column && y == substateindex-2 && field[i] == 0) {
+                    value = player;
+                }
+                newfield += value + ",";
+            }
+            
+            var width = substate.cells[0].width;
+            var height = substate.cells[0].height;
+            var marginleft = substate.cells[0].marginleft;
+            var margintop = substate.cells[0].margintop;
+            substate = {
+                round,
+                column,
+                winner,
+                illegalMove,
+                player,
+                field: newfield,
+                fieldWidth: 7,
+                fieldHeight: 6,
+                cells: _
+                    .chain(newfield)
+                    .thru((string) => string.split(/,|;/))
+                    .map(function (cellType, index) {
+                        var row     = Math.floor(index / 7),
+                            column  = index % 7,
+                            x       = column * width+marginleft,
+                            y       = row * height+margintop;
+                        return { row, column, x, y, width, height, cellType };
+                    })
+                    .value()
+            };
+
+            props = {
+                state: substate,
                 settings: self.settings,
             };
             React.render(GameView(props), self.getDOMNode());
@@ -125,5 +220,5 @@
         PlaybackEvent.off(PlaybackEvent.FAST_BACKWARD, context.fastBackward, context);
     }
 
-    module.exports = TicTacToe;
+    module.exports = TetrisBattle;
 }());

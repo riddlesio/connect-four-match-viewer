@@ -18,7 +18,6 @@
             'Connect4Game-overlay': true,
             'u-hidden': !winner
         });
-
         if ('none' === winner) {
             message = 'The game is a draw';
         }

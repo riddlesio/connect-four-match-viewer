@@ -2,7 +2,7 @@
 
     const
         AIGames      = require('aigames'),
-        TicTacToe   = require('./game/TicTacToe');
+        ConnectFourGame   = require('./game/ConnectFourGame');
 
     var game, 
         displayChrome = true;
@@ -13,7 +13,8 @@
 
     // Wraps the game for use on TheAIGames website
     // Takes care of setting up and destroying the competition namespace
-    game = new TicTacToe({
+    // AIGames.util.legacyWrapper(ConnectFourGame,
+    game = new ConnectFourGame({
             name: 'connectfour-battle',
             player: {
                 // Determines whether they player's chrome should be displayed
@@ -24,8 +25,8 @@
                 aspectRatio: 1000 / 558,
                 // Time between each step when playing
                 playbackTimeout: {
-                    min: 300,
-                    max: 1600
+                    min: 200,
+                    max: 3000
                 },
             }
         })

@@ -17,58 +17,53 @@ html {
 
 .Connect4Game-overlayMessage {
 	text-anchor: middle;
-	font-family: Montserrat;
+	font-family: Exo,sans-serif;
 	font-size: 3.5rem;
 	fill: #ffffff;
 }
 
 .Connect4Game-currentRound {
 	text-anchor: middle;
-	font-family: Montserrat;
+	font-family: Exo,sans-serif;
 	font-size: 3.5rem;
-	fill: #6ca3ff;
+	fill: #ffffff;
 }
 
 .Connect4Game-illegalMove {
-	text-anchor: middle;
-	font-family: Montserrat;
-	font-size: 2.5rem;
-	fill: #6ca3ff;
+	text-anchor: left;
+	font-family: Exo,sans-serif;
+	font-size: 2rem;
+	fill: #ffffff;
+}
+
+.Connect4Game-illegalMove.player2 {
+	text-anchor: end;
+}
+
+.Connect4Game-illegalMove.illegal {
+    fill: #fb4d00;
 }
 
 .Connect4Game-playerInfo {
-	fill: #6ca3ff;
-	font-family: Montserrat;
+	fill: #ffffff;
+	font-family: Exo,sans-serif;
 	font-size: 2.5rem;
 }
 
-.Connect4Game-playerName {
-	font-family: Montserrat;
-	text-anchor: middle;
+.Connect4Game-playerView-left .Connect4Game-playerName,
+.Connect4Game-playerView-left .Connect4Game-playerMove {
+	text-anchor: start;
+}
+.Connect4Game-playerView-right .Connect4Game-playerName,
+.Connect4Game-playerView-right .Connect4Game-playerMove {
+	text-anchor: end;
+}
+
+.Connect4Game-playerName,
+.Connect4Game-playerMove {
+	font-family: Exo,sans-serif;
+	fill: white;
 	font-size: 2.0rem;
-}
-
-.Connect4Game-playerName.active {
-	font-weight: bold;
-}
-
-.Connect4Game-playerFields {
-	font-family: Montserrat;
-	text-anchor: middle;
-	font-size: 4.0rem;
-}
-
-.Connect4Game-player1Name, .Connect4Game-player1Fields {
-	fill: #fe6f69;
-}
-
-.Connect4Game-player2Name, .Connect4Game-player2Fields {
-	fill: #69a2fc;
-}
-
-.Connect4Game-playerInfo.Connect4Game-playerMove {
-	text-anchor: middle;
-	font-size: 2rem;
 }
 
 .Connect4Game-playerMove-illegal {

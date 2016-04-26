@@ -19,7 +19,7 @@
                     var self = this,
                         { currentState } = self.getState();
 
-                    if (currentState !== self.states.length) {
+                    if (currentState !== self.states.length - 1) {
                         self.setStates({ currentState: currentState + 1 });
                     }
                     else {
@@ -42,6 +42,21 @@
                 },
 
                 /**
+                 * To the final step.
+                 */
+                fastForward: function () {
+                    var statenr = this.states.length - 1;
+                    return this.setState({currentState: statenr });
+                },
+
+                /**
+                 * To the first step.
+                 */
+                fastBackward: function () {
+                    return this.setState({ currentState: 0});
+                },
+
+                /**
                  * Starts the game loop
                  */
                 play: function () {
@@ -60,20 +75,6 @@
                 setMove: function (index) {
 
                     return this.setState({ currentState: index });
-                },
-                /**
-                 * To the final step.
-                 */
-                fastForward: function () {
-                    var statenr = this.states.length - 1;
-                    return this.setState({currentState: statenr });
-                },
-
-                /**
-                 * To the first step.
-                 */
-                fastBackward: function () {
-                    return this.setState({ currentState: 0});
                 }
             };
 
