@@ -1,9 +1,9 @@
-_defaults = {
+{
     "colors": {
         "players": {
             "0": "rgb(192, 59, 43)",
             "1": "rgb(40, 128, 186)"
-        },
+        }
     },
     "player": {
         "canvas": {
@@ -25,5 +25,5 @@ _defaults = {
             "margintop": 149
         }
     },
-    "boxHeight": 630,
-};
+    "boxHeight": 630
+}
