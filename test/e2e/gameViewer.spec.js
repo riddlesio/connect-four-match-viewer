@@ -18,6 +18,7 @@ describe('GamePlayer index', function () {
     this.timeout(60000);
 
     let lastStateButton;
+    let nextStateButton;
 
     before(function () {
 
@@ -27,6 +28,7 @@ describe('GamePlayer index', function () {
 
         const gameplayerButtons = $$('.GamePlayer-button');
 
+        nextStateButton = gameplayerButtons.get(3);
         lastStateButton = gameplayerButtons.get(4);
     });
 
@@ -61,6 +63,26 @@ describe('GamePlayer index', function () {
         expect($('.GamePlayer-button').isPresent()).to.eventually.equal(true);
     });
 
+    it('should show a mid-game state', () => {
+
+        browser.sleep(2000);
+
+        nextStateButton.click();
+        nextStateButton.click();
+        nextStateButton.click();
+        nextStateButton.click();
+        nextStateButton.click();
+        nextStateButton.click();
+        nextStateButton.click();
+        nextStateButton.click();
+        nextStateButton.click();
+        nextStateButton.click();
+
+        browser.sleep(2000);
+
+        expect(true).to.be.true;
+    });
+
     it('should show the overlay in the end', () => {
 
         browser.sleep(2000);
@@ -72,4 +94,3 @@ describe('GamePlayer index', function () {
         expect($('.Connect4Game-overlay').isPresent()).to.eventually.equal(true);
     });
 });
-

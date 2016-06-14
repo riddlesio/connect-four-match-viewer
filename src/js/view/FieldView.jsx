@@ -1,7 +1,9 @@
-import React      from 'react';
-import createView from 'omniscient';
+import React        from 'react';
+import createView   from 'omniscient';
+import Cell         from './Cell.jsx';
+const _ = require('lodash');
 
-const Cell = require('./Cell.jsx');
+// import _            from 'lodash';
 
 const FieldView = createView('FieldView', function (state) {
 

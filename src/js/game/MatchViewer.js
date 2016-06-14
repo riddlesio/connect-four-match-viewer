@@ -4,9 +4,9 @@ import ReactDOM                         from 'react-dom';
 import { createGame, event }            from '@riddles/match-viewer';
 import StateMixin                       from '../mixin/StateMixin';
 import GameLoopMixin                    from '../mixin/SimpleGameLoopMixin';
-import { parseStates, parseMoveSet, parsePlayerNames } from '../io/Parser';
+import { parseStates, parsePlayerNames } from '../io/Parser';
 import GameView                         from '../view/GameView.jsx';
-import defaults                        from '../data/gameDefaults.json';
+import defaults                         from '../data/gameDefaults.json';
 
 const { PlaybackEvent } = event;
 
@@ -57,12 +57,10 @@ const MatchViewer = createGame({
         settings = parsePlayerNames(playerData, settings);
 
         const states = parseStates(matchData, settings);
-        const moves = parseMoveSet(states);
 
         this.settings = settings;
         this.states   = states;
 
-        this.setMoves(moves);
         this.triggerStateChange(currentState);
         this.play();
     },
@@ -107,6 +105,8 @@ const MatchViewer = createGame({
      */
     rendersubstate: function (state, prevState, substateindex) {
 
+        console.log('rendersubstate MatchViewer');
+
         const { currentState } = state;
 
         var substate = this.states[currentState];
@@ -148,6 +148,7 @@ const MatchViewer = createGame({
         var height = substate.cells[0].height;
         var marginleft = substate.cells[0].marginleft;
         var margintop = substate.cells[0].margintop;
+
         substate = {
             round,
             column,

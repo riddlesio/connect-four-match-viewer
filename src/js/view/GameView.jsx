@@ -69,7 +69,6 @@ const GameView = createView('GameView', function (props) {
                 <g dangerouslySetInnerHTML={{
                     __html: `<use x="${1200 - 328 - 40}" y="20" xlink:href="#background-playername-yellow" />`
                 }} />
-
                 <text x={ 1200 - 110 } y="61" className="Connect4Game-playerName">
                     { players.names[1] }
                 </text>
@@ -80,7 +79,6 @@ const GameView = createView('GameView', function (props) {
             </g>
             <text x="50%" y="70" className="Connect4Game-currentRound">{ 'Round ' + round }</text>
             <Overlay winner={ winner } />
-
         </svg>
     );
 });
