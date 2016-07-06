@@ -67,16 +67,7 @@ describe('GamePlayer index', function () {
 
         browser.sleep(2000);
 
-        nextStateButton.click();
-        nextStateButton.click();
-        nextStateButton.click();
-        nextStateButton.click();
-        nextStateButton.click();
-        nextStateButton.click();
-        nextStateButton.click();
-        nextStateButton.click();
-        nextStateButton.click();
-        nextStateButton.click();
+        Array.from({ length: 10 }).forEach(nextStateButton.click);
 
         browser.sleep(2000);
 

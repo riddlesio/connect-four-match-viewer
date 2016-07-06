@@ -2,10 +2,10 @@ require('babel-core/register');
 const capabilities = require('./test/capabilities.conf.js');
 
 exports.config = {
-    // multiCapabilities: capabilities,
+    multiCapabilities: capabilities,
     maxSessions: 1,
-    // seleniumAddress: 'http://hub.browserstack.com/wd/hub',
-    seleniumAddress: 'http://localhost:4444/wd/hub',
+    seleniumAddress: 'http://hub.browserstack.com/wd/hub',
+    // seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: ['test/e2e/index.spec.js'],
     baseUrl: 'http://starapple.riddles.io:8080',
     framework: 'mocha',
