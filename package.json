@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=production gulp build --prod --riddles",
     "build-aigames": "NODE_ENV=production gulp build --prod --aigames",
-    "dev-build": "gulp build --debug",
+    "dev-build": "gulp build --debug --dev --aigames",
     "dev-server": "node server.js",
     "protractor": "protractor protractor.conf.js",
     "start-selenium-local": "./node_modules/.bin/webdriver-manager start"
