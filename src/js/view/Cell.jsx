@@ -1,7 +1,7 @@
-import React from 'react';
-import createView from 'omniscient';
+import React        from 'react';
+import component    from 'omniscient';
 
-const Cell = createView(function (data) {
+const Cell = component('Cell', function (props) {
 
     /**
      * Data should have the following structure:
@@ -14,28 +14,19 @@ const Cell = createView(function (data) {
      * }
      */
 
-    const { x, y, width, height, cellType } = data;
+    const { x, y, width, height, cellType } = props.cell;
     const id = `x${x}y${y}`;
 
     return (
-         <g id={ id } key={ id } dangerouslySetInnerHTML={{
-             __html: `<use x="${x}" y="${y}" width="${width}" height="${height}" xlink:href="#block-${cellType}" />`
-         }} />
+        <use
+            key={ id }
+            x={ x }
+            y={ y }
+            width={ width }
+            height={ height }
+            xlinkHref={ `#block-${cellType}` }
+        />
     );
 });
-
-// Private functions
-
-// /**
-//  * Creates a className string based on the passed cellType
-//  * @param  {String} cellType A value from enum/CellType
-//  * @return {String}
-//  */
-// function createClassName (cellType) {
-//     if (cellType == 1) { return "Connect4Game-cell--player1"; }
-//     if (cellType == 2) { return "Connect4Game-cell--player2"; }
-//     return "Connect4Game-cell";
-//
-// }
 
 export default Cell;
