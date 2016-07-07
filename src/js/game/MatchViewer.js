@@ -49,8 +49,8 @@ const MatchViewer = createGame({
 
         let settings;
         const currentState  = 0;
-        const matchData = data.matchData;
-        const playerData = data.playerData;
+        const matchData     = data.matchData;
+        const playerData    = data.playerData;
 
         settings = matchData.settings;
         settings = _.merge(this.getDefaults(), settings);
@@ -104,8 +104,6 @@ const MatchViewer = createGame({
      * @param {int} substateindex
      */
     rendersubstate: function (state, prevState, substateindex) {
-
-        console.log('rendersubstate MatchViewer');
 
         const { currentState } = state;
 

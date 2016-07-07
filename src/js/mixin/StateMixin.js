@@ -1,4 +1,4 @@
-const _ = require('lodash');
+import _ from 'lodash';
 
 const StateMixin = {
 
@@ -15,16 +15,15 @@ const StateMixin = {
              */
             setStates: function (diff) {
 
-                // const self = this;
-
+                const self = this;
                 const nextState = _.merge({}, state, diff);
 
                 substateindex = 0;
                 state = nextState;
 
-                // let intervalId = setInterval(function () {
-                //     self.renderSubState(state, nextState, intervalId);
-                // }, 40);
+                let intervalId = setInterval(function () {
+                    self.renderSubState(state, nextState, intervalId);
+                }, 40);
 
                 return this;
             },
@@ -67,8 +66,6 @@ const StateMixin = {
              * @return {Object}
              */
             renderSubState: function (state, nextState, intervalId) {
-
-                console.log('rendersubstate StateMixin');
 
                 const self = this;
                 const shouldComponentUpdate = self.shouldComponentUpdate;

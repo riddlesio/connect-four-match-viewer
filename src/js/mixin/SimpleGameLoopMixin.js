@@ -18,7 +18,7 @@ const SimpleGameLoopMixin = {
 
                 if (currentState !== this.states.length - 1) {
 
-                    this.triggerStateChange(currentState + 1);
+                    this.setStates({ currentState: currentState + 1 });
                 } else {
 
                     this.pause();
