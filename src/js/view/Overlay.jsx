@@ -1,8 +1,8 @@
-import React from 'react';
-import createView from 'omniscient';
-import classNames from 'classnames';
+import React        from 'react';
+import component    from 'omniscient';
+import classNames   from 'classnames';
 
-const Overlay = createView('Overlay', function (props) {
+const Overlay = component('Overlay', function (props) {
 
     const { winner } = props;
 
@@ -15,8 +15,19 @@ const Overlay = createView('Overlay', function (props) {
 
     return (
         <g className={ cx }>
-            <rect x="0" y="0" width="100%" height="100%" className="Connect4Game-overlayBackground"/>
-            <text x="50%" y="50%" className="Connect4Game-overlayMessage">{ message }</text>
+            <rect
+                x="0"
+                y="0"
+                width="100%"
+                height="100%"
+                className="Connect4Game-overlayBackground"
+            />
+            <text
+                x="50%"
+                y="50%"
+                className="Connect4Game-overlayMessage">
+                { message }
+            </text>
         </g>
     );
 });
