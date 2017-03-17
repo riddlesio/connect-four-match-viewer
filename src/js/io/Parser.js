@@ -32,7 +32,7 @@ function parseStates(data, settings) {
         if (winner) {
             if (winner !== 'none') {
                 /* It's not a draw */
-                winner = settings.players.names[parseInt(winner.replace('player', '')) - 1];
+                winner = settings.players.names[parseInt(winner.replace('player', ''))];
             }
         }
 
