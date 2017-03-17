@@ -91,7 +91,7 @@ const MatchViewer = createGame({
     getPieceRow: function (column, field) {
         for (let y = 0; y < 6; y++) {
             let value = field[y * 7 + column];
-            if (value > 0) {
+            if (value != ".") {
                 return y;
             }
         }
@@ -132,10 +132,10 @@ const MatchViewer = createGame({
 
             /* Blank out the piece that's actually already in place */
             if (x == column && y == row && substateindex < row + 1) {
-                value = 0;
+                value = ".";
             }
 
-            if (x == column && y == substateindex - 2 && field[i] == 0) {
+            if (x == column && y == substateindex - 2 && field[i] == ".") {
                 value = player;
             }
 
@@ -164,6 +164,8 @@ const MatchViewer = createGame({
                         column  = index % 7,
                         x       = column * width + marginleft,
                         y       = row * height + margintop;
+                        if (cellType == ".") cellType = "empty";
+
                     return { row, column, x, y, width, height, cellType };
                 })
                 .value(),

@@ -53,6 +53,7 @@ function parseStates(data, settings) {
                     const column    = index % fieldWidth;
                     const x         = column * width + marginleft;
                     const y         = row * height + margintop;
+                    if (cellType == ".") cellType = "empty";
 
                     return { row, column, x, y, width, height, cellType, marginleft, margintop };
                 })
