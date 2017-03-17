@@ -32,7 +32,7 @@ function parseStates(data, settings) {
         if (winner) {
             if (winner !== 'none') {
                 /* It's not a draw */
-                winner = settings.players.names[parseInt(winner.replace('player', '')) - 1];
+                winner = settings.players.names[parseInt(winner.replace('player', ''))];
             }
         }
 
@@ -53,6 +53,7 @@ function parseStates(data, settings) {
                     const column    = index % fieldWidth;
                     const x         = column * width + marginleft;
                     const y         = row * height + margintop;
+                    if (cellType == ".") cellType = "empty";
 
                     return { row, column, x, y, width, height, cellType, marginleft, margintop };
                 })
