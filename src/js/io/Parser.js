@@ -18,37 +18,30 @@ function parsePlayerNames(playerData, settings) {
 
 function parseStates(data, settings) {
 
-    const field                     = settings.field;
+    const { field, players }        = settings;
     const fieldWidth                = field.width;
     const fieldHeight               = field.height;
     const { width, height }         = field.cell;
     const { marginleft, margintop } = field.margins;
+    const { winner, states }        = data;
 
-    return _.map(data.states, function (state) {
+    const parsedStates = states.map(state => {
 
         const { round, column, field, illegalMove, player } = state;
-        let { winner } = state;
-
-        if (winner) {
-            if (winner !== 'none') {
-                /* It's not a draw */
-                winner = settings.players.names[parseInt(winner.replace('player', '')) - 1];
-            }
-        }
 
         return {
             round,
             column,
-            winner,
             field,
             fieldWidth,
             fieldHeight,
             illegalMove,
             player,
+            winner: null,
             cells: _
                 .chain(field)
                 .thru((string) => string.split(/,|;/))
-                .map(function (cellType, index) {
+                .map((cellType, index) => {
                     const row       = Math.floor(index / fieldWidth);
                     const column    = index % fieldWidth;
                     const x         = column * width + marginleft;
@@ -59,6 +52,18 @@ function parseStates(data, settings) {
                 .value(),
         };
     });
+
+    return addFinalState(parsedStates, winner, players.names);
+}
+
+function addFinalState(states, winner, playerNames) {
+    const lastState = states[states.length - 1];
+    return states.concat([
+        {
+            ...lastState,
+            winner: winner !== null ? playerNames[winner] : null,
+        },
+    ]);
 }
 
 export {

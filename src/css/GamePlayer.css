@@ -51,9 +51,11 @@ body {
 }
 
 .GamePlayer-view {
-
 	width: 100%;
 	height: 100%;
+
+	background: url('../img/background.png') no-repeat center;
+	background-size: cover;
 }
 
 .GamePlayer-dropdown {

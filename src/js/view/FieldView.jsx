@@ -2,11 +2,6 @@ import React        from 'react';
 import component    from 'omniscient';
 import Cell         from './Cell.jsx';
 
-function renderCell(cell) {
-
-    return <Cell cell={ cell } />;
-}
-
 const FieldView = component('FieldView', function (state) {
 
     const { cells } = state;
@@ -20,5 +15,10 @@ const FieldView = component('FieldView', function (state) {
         </g>
     );
 });
+
+function renderCell(cell, index) {
+
+    return <Cell key={ index} cell={ cell } />;
+}
 
 export default FieldView;

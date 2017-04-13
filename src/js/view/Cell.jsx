@@ -15,11 +15,9 @@ const Cell = component('Cell', function (props) {
      */
 
     const { x, y, width, height, cellType } = props.cell;
-    const id = `x${x}y${y}`;
 
     return (
         <use
-            key={ id }
             x={ x }
             y={ y }
             width={ width }

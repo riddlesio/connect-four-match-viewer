@@ -90,8 +90,8 @@ const MatchViewer = createGame({
      */
     getPieceRow: function (column, field) {
         for (let y = 0; y < 6; y++) {
-            let value = field[y * 7 + column];
-            if (value > 0) {
+            const value = field[y * 7 + column];
+            if (value !== '.') {
                 return y;
             }
         }
@@ -107,45 +107,41 @@ const MatchViewer = createGame({
 
         const { currentState } = state;
 
-        var substate = this.states[currentState];
-        var column = substate.column;
-        var round = substate.round;
-        var winner = substate.winner;
-        var player = substate.player;
+        let substate = this.states[currentState];
 
-        var illegalMove = substate.illegalMove;
-        var field = substate.field.split(/,|;/);
-        var newfield = '';
-        var row = this.getPieceRow(column, field);
+        const { column, round, winner, player, fieldWidth, fieldHeight, illegalMove } = substate;
+        const field = substate.field.split(/,|;/);
+        const row = this.getPieceRow(column, field);
+        let newfield = '';
 
         /* If a move is illegal, just render a single state without substates */
-        if (illegalMove != '') {
+        if (illegalMove !== '') {
             this.render(state, prevState);
             return;
         }
 
         /* Create a new field which represents the substate */
-        for (var i = 0; i < 7 * 6; i++) {
-            var value = field[i];
-            var x = i % 7;
-            var y = Math.floor(i / 7);
+        for (let i = 0; i < 7 * 6; i++) {
+            const x = i % 7;
+            const y = Math.floor(i / 7);
+            let value = field[i];
 
             /* Blank out the piece that's actually already in place */
-            if (x == column && y == row && substateindex < row + 1) {
-                value = 0;
+            if (x === column && y === row && substateindex < row + 1) {
+                value = '.';
             }
 
-            if (x == column && y == substateindex - 2 && field[i] == 0) {
+            if (x === column && y === substateindex - 2 && field[i] === '.') {
                 value = player;
             }
 
             newfield += value + ',';
         }
 
-        var width = substate.cells[0].width;
-        var height = substate.cells[0].height;
-        var marginleft = substate.cells[0].marginleft;
-        var margintop = substate.cells[0].margintop;
+        const width = substate.cells[0].width;
+        const height = substate.cells[0].height;
+        const marginleft = substate.cells[0].marginleft;
+        const margintop = substate.cells[0].margintop;
 
         substate = {
             round,
@@ -153,17 +149,17 @@ const MatchViewer = createGame({
             winner,
             illegalMove,
             player,
+            fieldWidth,
+            fieldHeight,
             field: newfield,
-            fieldWidth: 7,
-            fieldHeight: 6,
             cells: _
                 .chain(newfield)
                 .thru((string) => string.split(/,|;/))
-                .map(function (cellType, index) {
-                    var row     = Math.floor(index / 7),
-                        column  = index % 7,
-                        x       = column * width + marginleft,
-                        y       = row * height + margintop;
+                .map((cellType, index) => {
+                    const row     = Math.floor(index / 7);
+                    const column  = index % 7;
+                    const x       = column * width + marginleft;
+                    const y       = row * height + margintop;
                     return { row, column, x, y, width, height, cellType };
                 })
                 .value(),
